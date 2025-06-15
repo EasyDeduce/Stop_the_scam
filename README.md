@@ -55,22 +55,39 @@ Easily deployable via Render, Hugging Face, or any cloud platform
 
 
 fraudulent_job_classifier/
+
 │
+
 ├── data/                # Raw & cleaned datasets
+
 ├── models/              # Saved models (XGBoost, vectorizers, encoders)
+
 ├── src/                 # Source code
+
 │   ├── config.py        # Configurations
+
 │   ├── data_preprocessing.py
+
 │   ├── feature_engineering.py
+
 │   ├── model_training.py
+
 │   ├── prediction_pipeline.py
+
 │   └── utils/
+
 │       ├── shap_explainer.py
+
 │       └── alerting.py
+
 │
+
 ├── train.py             # One-time training script
+
 ├── predict.py           # Prediction & inference pipeline
+
 ├── requirements.txt
+
 └── README.md
 
 
