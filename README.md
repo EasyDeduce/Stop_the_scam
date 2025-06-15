@@ -1,117 +1,108 @@
-🚀 Stop The Scam — Fraudulent Job Listing Classifier
+🚫 Stop The Scam: Fraudulent Job Listing Classifier
 
 
-An end-to-end machine learning pipeline to detect fraudulent job postings.
+A complete end-to-end machine learning pipeline to detect fraudulent job postings.
 
-
-
-📂 Project Structure
-
+Built using XGBoost, TF-IDF NLP, SHAP Explainability, and Email Alerting.
 
 
 
+📦 Features
 
-Stop_The_Scam/
+
+
+
+Text preprocessing and feature engineering (TF-IDF + categorical encoding)
+
+
+
+
+XGBoost classifier with class imbalance handling
+
+
+
+
+SMOTE oversampling for better fraud detection
+
+
+
+
+SHAP interpretability for model explainability
+
+
+
+
+Email alerts for high-risk job listings
+
+
+
+
+Modular code structure for training, prediction, and deployment
+
+
+
+
+Easily deployable via Render, Hugging Face, or any cloud platform
+
+
+
+
+
+🗂️ Project Structure
+
+
+
+
+
+fraudulent_job_classifier/
 │
-├── data/
-│   ├── job_data.csv          # Original dataset
-│   └── custom_jobs.csv       # New jobs to predict
+├── data/                # Raw & cleaned datasets
+├── models/              # Saved models (XGBoost, vectorizers, encoders)
+├── src/                 # Source code
+│   ├── config.py        # Configurations
+│   ├── data_preprocessing.py
+│   ├── feature_engineering.py
+│   ├── model_training.py
+│   ├── prediction_pipeline.py
+│   └── utils/
+│       ├── shap_explainer.py
+│       └── alerting.py
 │
-├── models/
-│   ├── final_model.pkl       # Trained XGBoost model
-│   ├── vectorizer.pkl        # Saved TFIDF vectorizer
-│   └── ohe.pkl               # Saved OneHotEncoder
-│
-├── src/
-│   ├── config.py             # Configurations & hyperparameters
-│   ├── data_preprocessing.py # Cleaning raw data
-│   ├── feature_engineering.py# Feature extraction pipeline
-│   └── model_training.py     # Model training & evaluation functions
-│
-├── utils/
-│   ├── alerting.py           # Email alerts for high-risk jobs
-│   └── explainability.py     # SHAP-based explainability
-│
-├── train_model.py            # Full training pipeline
-├── predict_and_alert.py      # Full prediction + explainability + alert pipeline
+├── train.py             # One-time training script
+├── predict.py           # Prediction & inference pipeline
+├── requirements.txt
 └── README.md
 
 
 
 
-💡 Features
+⚙️ Setup Instructions
 
 
-
-
-✅ Full data cleaning & feature engineering
-
-
-
-
-✅ TFIDF + OneHotEncoder based feature extraction
-
-
-
-
-✅ SMOTE oversampling for class imbalance
-
-
-
-
-✅ Trained XGBoost model (90%+ F1-score)
-
-
-
-
-✅ SHAP explainability (where possible)
-
-
-
-
-✅ Email alerts for high-risk jobs (probability > 90%)
-
-
-
-
-✅ Modular code with full separation of training vs inference
-
-
-
-
-✅ Fully scalable & production-ready structure
+1️⃣ Clone Repository
 
 
 
 
 
-🔧 Setup Instructions
-
-
-1️⃣ Clone repository
-
+git clone https://github.com/yourusername/stop-the-scam.git
+cd stop-the-scam
 
 
 
-
-git clone https://github.com/EasyDeduce/Stop_The_Scam.git
-cd Stop_The_Scam
-
-
-
-2️⃣ Create virtual environment
+2️⃣ Create Virtual Environment
 
 
 
 
 
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate     # Windows
+source venv/bin/activate        # On Linux/macOS
+venv\Scripts\activate           # On Windows
 
 
 
-3️⃣ Install dependencies
+3️⃣ Install Dependencies
 
 
 
@@ -121,137 +112,175 @@ pip install -r requirements.txt
 
 
 
-4️⃣ Add your data
+
+📊 Model Training
 
 
-
-
-Place your training data inside data/job_data.csv
-
-
-
-
-Place any custom data you want to predict on in data/custom_jobs.csv
+Only required for initial model building or retraining.
 
 
 
 
 
-🚀 Usage
-
-
-🔬 Train model (only required once or when retraining):
+python train.py
 
 
 
 
 
-python train_model.py
+Model artifacts (XGBoost model, vectorizer, encoder) will be saved to models/.
 
 
 
 
 
-This will train the model and save it inside models/
+🔎 Model Prediction
 
 
-
-
-🔮 Predict on new data (and trigger alerts):
-
-
-
-
-
-python predict_and_alert.py
-
-
-
-
-📧 Email Alert Setup
-
-
-1️⃣ Enable "App Passwords" for your Gmail account
-
-2️⃣ Replace your credentials inside utils/alerting.py:
+Perform prediction and trigger alerts on new data:
 
 
 
 
 
-sender = 'your_email@gmail.com'
+python predict.py
+
+
+
+
+
+Make sure predict.py points to your new dataset path.
+
+
+
+
+SHAP plots and email alerts will trigger automatically.
+
+
+
+
+
+📧 Email Alert Configuration
+
+
+
+
+Update your credentials in src/utils/alerting.py:
+
+
+
+
+
+
+
+sender = 'youremail@gmail.com'
 password = 'your_app_password'
-receiver = 'receiver_email@gmail.com'
-
-
-
-
-📊 Explainability (SHAP)
-
-
-
-
-SHAP plots will be generated during prediction.
-
-
-
-
-If feature count is too high, plots may be skipped automatically.
+receiver = 'destination_email@gmail.com'
 
 
 
 
 
-🔄 Retraining
+For Gmail:
 
-
-Simply run python train_model.py anytime you add new labeled data.
-
-
-
-🚧 To Do (Future)
-
-
-
-
-✅ Flask API endpoint for real-time predictions
-
-
-
-
-✅ Automate retraining with cron job
-
-
-
-
-✅ Deployment-ready Docker setup
-
-
-
-
-✅ GitHub Actions CI/CD
+Enable App Passwords under Google Account > Security.
 
 
 
 
 
-🙏 Acknowledgements
+🌐 Deployment Options
+
+
+PlatformSMTP SupportNotesRender✅Recommended for full functionalityHugging Face Spaces❌SMTP blockedLocal✅Fully supported
+
+
+🔥 Tech Stack
 
 
 
 
-Dataset: Kaggle — Fake Job Postings Dataset
+Python 3.11
 
 
 
 
-Libraries: scikit-learn, xgboost, imbalanced-learn, shap, nltk
+scikit-learn
+
+
+
+
+XGBoost
+
+
+
+
+imbalanced-learn
+
+
+
+
+SHAP
+
+
+
+
+Gradio (for web UI)
+
+
+
+
+smtplib (for email)
 
 
 
 
 
-🧑‍💻 Author
+🏷️ To Do (Optional Future Improvements)
 
 
-Saksham Rao
+
+
+✅ SHAP Explainability
+
+
+
+
+✅ Real-time Email Alerts
+
+
+
+
+✅ API Endpoint Deployment (Gradio/Flask)
+
+
+
+
+✅ Retraining Automation
+
+
+
+
+⬜ Dockerize for portable deployment
+
+
+
+
+⬜ CI/CD pipeline for automatic updates
+
+
+
+
+
+🙏 Acknowledgments
+
+
+
+
+Dataset: Kaggle Job Fraud Dataset
+
+
+
+
+Developed by: YourNameHere
+
