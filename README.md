@@ -94,7 +94,7 @@ Stop_The_Scam/
 
 
 
-git clone https://github.com/your-username/Stop_The_Scam.git
+git clone https://github.com/EasyDeduce/Stop_The_Scam.git
 cd Stop_The_Scam
 
 
