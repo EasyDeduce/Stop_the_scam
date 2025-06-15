@@ -85,7 +85,7 @@ fraudulent_job_classifier/
 
 
 
-git clone https://github.com/yourusername/stop-the-scam.git
+git clone https://github.com/EasyDeduce/stop-the-scam.git
 cd stop-the-scam
 
 
